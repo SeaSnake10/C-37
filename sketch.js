@@ -1,5 +1,6 @@
 var gameState = 0;
-var database, form, game;
+var database, form, game, player;
+var playerCount;
 
 function setup(){
     database = firebase.database();
@@ -10,26 +11,12 @@ function setup(){
 }
 
 function draw(){
-    background("white");
+    if(playerCount === 4){
+        game.update(1);
 
-    drawSprites();
+    }
+    if(gameState === 1){
+        clear();
+        game.play();
+    }
 }
-
-function writePosition(x,y){
-    database.ref('ball/position').set({
-        'x':position.x+x,
-        'y':position.y+y
-    })
-}
-
-function readPosition(data){
-    position = data.val();
-    console.log(position.x);
-    ball.x = position.x;
-    ball.y = position.y; 
-}
-
-function showError(){
-    console.log("Error in writing to the database"); 
-}
-
