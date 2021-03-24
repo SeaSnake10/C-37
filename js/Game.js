@@ -9,10 +9,22 @@ class Game{
     update(state){
         database.ref('/').update({gameState: state})
     }
-    start(){
+    async start(){
         if(gameState === 0){
+            player = new Player();
+            var playerCountRef = await database.ref('playerCount').once("value")
+            if(playerCountRef.exist()){
+            player.getCount()
+            }
             form = new Form();
             form.display();
+            
         }
+        
+    }
+    play(){
+        form.hide();
+        textSize(15);
+        text("Game has started", 100, 10);
     }
 }
