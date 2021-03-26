@@ -1,11 +1,12 @@
 class Form{
     constructor(){
         this.input = createInput("Name")
-        this.button = createButtton("Start")
+        this.button = createButton("Start")
         this.greeting = createElement("h3")
     }
 
     hide(){
+        this.greeting.hide();
         this.input.hide();
         this.button.hide();
     }
@@ -26,6 +27,7 @@ class Form{
             this.greeting.position(450, 170);
             player.name = this.input.value();
             playerCount+=1;
+            player.index = playerCount;
             player.updateCount(playerCount);
         })
     }

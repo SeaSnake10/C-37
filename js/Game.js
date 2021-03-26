@@ -13,7 +13,8 @@ class Game{
         if(gameState === 0){
             player = new Player();
             var playerCountRef = await database.ref('playerCount').once("value")
-            if(playerCountRef.exist()){
+            if(playerCountRef.exists()){
+            playerCount = playerCountRef.val();
             player.getCount()
             }
             form = new Form();
@@ -25,6 +26,6 @@ class Game{
     play(){
         form.hide();
         textSize(15);
-        text("Game has started", 100, 10);
+        text("Game has started", 530, 150);
     }
 }
